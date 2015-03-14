@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome to the Stacked Queue Test Harness</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+  <div>
+    <h1>Welcome to the Stacked Queue Test Harness</h1>
+  </div>
+  <div>
+    <h3>Your Queue</h3>
+    <ol>
+      <li th:each="item : ${displayList}"><span th:text="${item.value}">item</span></li>
+    </ol>
+    <form action="#" th:action="@{/addToQueue}" th:object="${objectToAdd}" method="post">
+        <p>String To Add: <input type="text" th:field="*{value}" /></p>
+        <p><input type="submit" value="Add to Queue" /> <input type="reset" value="Reset" /></p>
+    </form>
+    <h3 th:text="${popped != null} ? 'Item Removed: ' + ${popped.value}"></h3>
+    <form action="#" th:action="@{/removeFromQueue}" method="post">        
+        <p><input type="submit" value="Remove from Queue" /></p>
+    </form>
+  </div>
+</div>
+</body>
+</html>
